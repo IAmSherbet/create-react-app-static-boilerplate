@@ -9,6 +9,7 @@ const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
 
@@ -246,6 +247,21 @@ module.exports = {
     // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
     // You can remove this if you don't use Moment.js:
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new BrowserSyncPlugin({
+      // browse to http://localhost:3000/ during development
+      host: 'localhost',
+      port: 3002,
+      // proxy the Webpack Dev Server endpoint
+      // (which should be serving on http://localhost:3000/)
+      // through BrowserSync
+      proxy: 'http://localhost:3000/'
+    },
+    // plugin options
+    {
+      // prevent BrowserSync from reloading the page
+      // and let Webpack Dev Server take care of this
+      reload: false
+    })
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
