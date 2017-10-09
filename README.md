@@ -1,7 +1,23 @@
+## Differences to `create-react-app`
+
+This app has been ejected from [Create React App](https://github.com/facebookincubator/create-react-app). See its documentation at the end of this readme.
+
+The following changes have been made:
+* [CSS Modules](https://github.com/css-modules/css-modules) enabled in the webpack CSS loader. That means you can import your CSS files and get locally scoped CSS class names
+    ```JavaScript
+    import s from './Navbar.css';
+    (props) => <div className={`${s.customClass}`} />
+    ```
+* [BrowserSync](https://browsersync.io/) enabled in dev mode. `yarn start` should print out URLs you can access locally and externally to test on devices simultaneously.
+* [`react-snapshot`](https://github.com/geelen/react-snapshot) for dumping a static version of the site to `./build` that is rehydrated on the client. Its renderer is used in [`./src/index.js`](./src/index.js)
+* [`react-helmet`](https://github.com/nfl/react-helmet) for modifying `meta` tags. Works very well with `react-snapshot`
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+
+----
 
 ## Table of Contents
 
@@ -283,7 +299,7 @@ In the WebStorm menu `Run` select `Edit Configurations...`. Then click `+` and s
 
 Start your app by running `npm start`, then press `^D` on macOS or `F9` on Windows and Linux or click the green debug icon to start debugging in WebStorm.
 
-The same way you can debug your application in IntelliJ IDEA Ultimate, PhpStorm, PyCharm Pro, and RubyMine. 
+The same way you can debug your application in IntelliJ IDEA Ultimate, PhpStorm, PyCharm Pro, and RubyMine.
 
 ## Formatting Code Automatically
 
@@ -1769,7 +1785,7 @@ If you’re using [Apache HTTP Server](https://httpd.apache.org/), you need to c
     RewriteRule ^ index.html [QSA,L]
 ```
 
-It will get copied to the `build` folder when you run `npm run build`. 
+It will get copied to the `build` folder when you run `npm run build`.
 
 If you’re using [Apache Tomcat](http://tomcat.apache.org/), you need to follow [this Stack Overflow answer](https://stackoverflow.com/a/41249464/4878474).
 
